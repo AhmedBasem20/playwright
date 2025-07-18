@@ -8,7 +8,7 @@ def scrape_behance_images(url, max_scrolls=2, scroll_delay=2):
     image_urls = set()
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)  # Set headless=True for production
+        browser = p.chromium.launch(headless=True, args=["--no-sandbox"])  # Set headless=True for production
         page = browser.new_page()
         page.goto(url, timeout=60000)
         page.wait_for_timeout(5000)  # Initial wait
